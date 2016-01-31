@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="email-client-app">
+
+  <head>
+    <meta charset="UTF-8">
+    <link data-require="bootstrap@3.3.1" data-semver="3.3.1" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <hr>
+      <div class="row">
+        <div class="col-xs-4 folders">
+          <folder-list></folder-list>
+        </div>
+        <div class="col-xs-8 email-previews">
+          <email-list></email-list>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-xs-12">
+          <email-details></email-details>
+        </div>
+      </div>
+    </div>
+    
+    <script data-require="angular.js@1.4.8" data-semver="1.4.8" src="https://code.angularjs.org/1.4.8/angular.js"></script>
+    <script src="script.js"></script>
+  </body>
+
+</html>

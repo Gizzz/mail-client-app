@@ -1,0 +1,33 @@
+/* Styles go here */
+
+/* div {
+  border: 1px solid black;
+} */
+
+.container {
+  margin-top: 20px;
+}
+
+.folders {
+  border-right: 3px solid #337ab7;
+}
+
+.folders ul {
+  list-style-type: none;
+}
+
+.folders .active {
+  font-weight: bold;
+}
+
+.email-previews {
+  border-left: 3px solid #ccc;
+}
+
+.email-previews .row {
+  cursor: pointer;
+}
+
+.email-previews .row:hover {
+  background: #ccc;
+}
