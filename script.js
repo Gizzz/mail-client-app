@@ -2,33 +2,44 @@
 
 angular.module("email-client-app", []);
 
+// -----------------------
 // directives
+// -----------------------
 
 angular.module("email-client-app").directive("folderList", function() {
   return {
     restrict: "E",
-    templateUrl: "folder-list.html",
+    templateUrl: "templates/folder-list.html",
     controllerAs: "folderListCtrl",
-    controller: function($http, emailListStorage, globalState) {
-      this.folders = emailListStorage.folders;
-      
-      // var emailsByFolder = $http.get("https://jsonblob.com/56ad0df8e4b01190df4c3fb3");
-      
+    controller: function($http, emailStorage, globalState) {
+      this.folders = [{ name: "fetching data...", count: 0 }];
+	    var self = this;
+
+      emailStorage.getFoldersPromise().then(
+        function(result) {
+          self.folders = result;
+        },
+        function(error) {
+          self.folders = [{ name: "Error occurred while fetching folders.", count: 0 }];
+          console.log(error);
+        }
+      );
+
       this.getActiveFolder = function() {
         return globalState.activeFolder;
       };
-      
+
       this.setActiveFolder = function(folderName) {
         globalState.activeFolder = folderName;
       };
     },
   };
 });
-  
+
 angular.module("email-client-app").directive("emailList", function() {
   return {
     restrict: "E",
-    templateUrl: "email-list.html",
+    templateUrl: "templates/email-list.html",
     controllerAs: "emailListCtrl",
     controller: function(emailListStorage, globalState) {
       this.emailsByFolder = emailListStorage.emailsByFolder;
@@ -47,7 +58,7 @@ angular.module("email-client-app").directive("emailList", function() {
 angular.module("email-client-app").directive("emailDetails", function() {
   return {
     restrict: "E",
-    templateUrl: "email-details.html",
+    templateUrl: "templates/email-details.html",
     controllerAs: "emailDetailsCtrl",
     controller: function(globalState) {
       this.getActiveEmail = function() {
@@ -57,8 +68,38 @@ angular.module("email-client-app").directive("emailDetails", function() {
   };
 });
 
+// -----------------------
 // services
+// -----------------------
 
+angular.module("email-client-app").factory("emailStorage", function($http) {
+  var emailsByFolder = undefined;
+
+
+
+  return {
+    emailsByFolder: emailsByFolder,
+
+    getFoldersPromise: function() {
+      var promise = $http.get("https://jsonblob.com/api/jsonBlob/56ad0df8e4b01190df4c3fb3")
+        .then(function (result) {
+          var emailsByFolder = result.data;
+          var folderNames = Object.keys(emailsByFolder);
+          var folders = [];
+
+          folderNames.forEach(function(key) {
+            folders.push({name: key, count: emailsByFolder[key].length});
+          });
+
+          return folders;
+        });
+
+      return promise;
+    },
+  };
+});
+
+// to remove
 angular.module("email-client-app").factory("emailListStorage", function($http) {
   var emailsByFolder = {
     incoming: [
@@ -96,10 +137,8 @@ angular.module("email-client-app").factory("emailListStorage", function($http) {
     ],
   };
   
-  // var emailsByFolder = $http.get("https://jsonblob.com/56ad0df8e4b01190df4c3fb3");
-  
   return {
-    emailsByFolder,
+    emailsByFolder: emailsByFolder,
     get folders() {
       var folderNames = Object.keys(this.emailsByFolder);
       
@@ -118,6 +157,6 @@ angular.module("email-client-app").factory("globalState", function() {
     activeFolder: "incoming",
     activeEmail: undefined,
   };
-  
+
   return globalState;
 });
