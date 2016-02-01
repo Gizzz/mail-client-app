@@ -1,0 +1,36 @@
+﻿<div class="row">
+	<div class="col-xs-4 folders">
+		<user-list></user-list>
+	</div>
+	<div class="col-xs-8 email-previews">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">user.fullName</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table table-user-information">
+					<tbody>
+						<tr>
+							<td>Дата рождения</td>
+							<td>user.birthdate</td>
+						</tr>
+						<tr>
+							<td>Пол</td>
+							<td>user.gender</td>
+						</tr>
+						<tr>
+							<td>Адрес</td>
+							<td>user.address</td>
+						</tr>
+						<tr>
+							<td>Email</td>
+							<td><a ng-href="mailto:user.email">user.email</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--<div class="panel-footer">
+			</div>-->
+		</div>
+	</div>
+</div>

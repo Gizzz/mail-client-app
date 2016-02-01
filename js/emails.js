@@ -1,7 +1,5 @@
 "use strict";
 
-angular.module("email-client-app", []);
-
 // -----------------------
 // directives
 // -----------------------
@@ -9,7 +7,7 @@ angular.module("email-client-app", []);
 angular.module("email-client-app").directive("folderList", function() {
   return {
     restrict: "E",
-    templateUrl: "templates/folder-list.html",
+    templateUrl: "templates/emails/folder-list.html",
     controllerAs: "folderListCtrl",
     controller: function($http, emailStorage, globalState) {
       this.folders = [{ name: "fetching data...", count: 0 }];
@@ -39,7 +37,7 @@ angular.module("email-client-app").directive("folderList", function() {
 angular.module("email-client-app").directive("emailList", function() {
   return {
     restrict: "E",
-    templateUrl: "templates/email-list.html",
+    templateUrl: "templates/emails/email-list.html",
     controllerAs: "emailListCtrl",
     controller: function(emailStorage, globalState) {
       this.emailsByFolder = { "incoming": [{"subject": "fetching data..." }] };
@@ -69,7 +67,7 @@ angular.module("email-client-app").directive("emailList", function() {
 angular.module("email-client-app").directive("emailDetails", function() {
   return {
     restrict: "E",
-    templateUrl: "templates/email-details.html",
+    templateUrl: "templates/emails/email-details.html",
     controllerAs: "emailDetailsCtrl",
     controller: function(globalState) {
       this.getActiveEmail = function() {
