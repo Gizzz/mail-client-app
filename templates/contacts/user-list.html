@@ -1,5 +1,11 @@
 ﻿<ul>
 	<li ng-repeat="user in userListCtrl.users">
-		<a href="#">{{user.fullName}}</a>
+		<a 
+			href="#"
+			ng-click="userListCtrl.selectedUserId = user.id"
+			ng-class="user.id === userListCtrl.selectedUserId ? 'active' : ''"
+		>
+			{{user.fullName}}
+		</a>
 	</li>
 </ul>

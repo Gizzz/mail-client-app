@@ -1,0 +1,33 @@
+﻿<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{userDetailsCtrl.getCurrentUser().fullName}}</h3>
+	</div>
+	<div class="panel-body">
+		<table class="table table-user-information">
+			<tbody>
+				<tr>
+					<td>Дата рождения</td>
+					<td>{{userDetailsCtrl.getCurrentUser().birthdate}}</td>
+				</tr>
+				<tr>
+					<td>Пол</td>
+					<td>{{userDetailsCtrl.getCurrentUser().gender}}</td>
+				</tr>
+				<tr>
+					<td>Адрес</td>
+					<td>{{userDetailsCtrl.getCurrentUser().address}}</td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td>
+						<a ng-href="mailto:{{userDetailsCtrl.getCurrentUser().email}}">
+							{{userDetailsCtrl.getCurrentUser().email}}
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!--<div class="panel-footer">
+	</div>-->
+</div>
