@@ -1,8 +1,10 @@
 /* Styles go here */
 
-/* div {
-  border: 1px solid black;
-} */
+.tab-pane {
+    padding-top: 20px;
+}
+
+
 
 .container {
   margin-top: 20px;

@@ -1,4 +1,4 @@
-<!--
+﻿<!--
 
   todo:
   - component like architecture
@@ -16,28 +16,95 @@
     <link rel="stylesheet" href="style.css" />
   </head>
 
-  <body>
-    <div class="container">
-	    source code: <a href="https://github.com/Gizzz/mail-client-app">https://github.com/Gizzz/mail-client-app</a>
-      <hr>
-      <div class="row">
-        <div class="col-xs-4 folders">
-          <folder-list></folder-list>
-        </div>
-        <div class="col-xs-8 email-previews">
-          <email-list></email-list>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-xs-12">
-          <email-details></email-details>
-        </div>
-      </div>
-    </div>
-    
-    <script data-require="angular.js@1.4.8" data-semver="1.4.8" src="https://code.angularjs.org/1.4.8/angular.js"></script>
-    <script src="script.js"></script>
-  </body>
+<body>
+	<div class="container">
+		source code: <a href="https://github.com/Gizzz/mail-client-app">https://github.com/Gizzz/mail-client-app</a>
+		<hr>
+
+		<div>
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active">
+					<a href="#emails" data-toggle="tab">Emails</a>
+				</li>
+				<li role="presentation">
+					<a href="#contacts" data-toggle="tab">Contacts</a>
+				</li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div class="tab-pane fade in active" id="emails">
+					<div class="row">
+						<div class="col-xs-4 folders">
+							<folder-list></folder-list>
+						</div>
+						<div class="col-xs-8 email-previews">
+							<email-list></email-list>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-xs-12">
+							<email-details></email-details>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="contacts">
+					<div class="row">
+						<div class="col-xs-4 folders">
+							<ul>
+								<li>
+									<a href="#">John Smith</a>
+								</li>
+								<li>
+									<a href="#">Samuel Jackson</a>
+								</li>
+								<li>
+									<a href="#">Gabe Aul</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-xs-8 email-previews">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">user.fullName</h3>
+								</div>
+								<div class="panel-body">
+									<table class="table table-user-information">
+										<tbody>
+											<tr>
+												<td>Дата рождения</td>
+												<td>user.birthdate</td>
+											</tr>
+											<tr>
+												<td>Пол</td>
+												<td>user.gender</td>
+											</tr>
+											<tr>
+												<td>Адрес</td>
+												<td>user.address</td>
+											</tr>
+											<tr>
+												<td>Email</td>
+												<td><a ng-href="mailto:user.email">user.email</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!--<div class="panel-footer">
+								</div>-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script data-require="jquery@2.1.4" data-semver="2.1.4" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script data-require="bootstrap@3.3.1" data-semver="3.3.1" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script data-require="angular.js@1.4.8" data-semver="1.4.8" src="https://code.angularjs.org/1.4.8/angular.min.js"></script>
+	<script src="script.js"></script>
+</body>
 
 </html>
