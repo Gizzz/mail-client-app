@@ -38,7 +38,7 @@ angular.module("email-client-app").directive("userDetails", function () {
 		controllerAs: "userDetailsCtrl",
 		controller: function ($scope, userStorage) {
 			this.getCurrentUser = function () {
-				var userId = Number($scope.userDetailsCtrl.selectedUserId);
+				var userId = Number(this.selectedUserId);
 				return userStorage.getUserById(userId);
 			};
 		},
