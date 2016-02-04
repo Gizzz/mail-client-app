@@ -1,7 +1,7 @@
 <ul>
   <li ng-repeat="folder in folderListCtrl.folders">
     <a 
-      href="#" 
+      href="javascript:void(0)"
       ng-click="folderListCtrl.setActiveFolder(folder.name)"
       ng-class="folder.name === folderListCtrl.getActiveFolder() ? 'active' : ''"
     >
