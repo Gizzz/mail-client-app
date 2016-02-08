@@ -3,7 +3,7 @@
 var appModule = angular.module("email-client-app", ["ui.router"]);
 
 appModule.config(function ($stateProvider, $urlRouterProvider) {
-	$urlRouterProvider.otherwise("/");
+	$urlRouterProvider.otherwise("/emails");
 
 	$stateProvider
 		.state("emails", {
