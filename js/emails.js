@@ -4,12 +4,27 @@
 // directives
 // -----------------------
 
-angular.module("email-client-app").directive("folderList", function() {
+appModule.directive("emailsBlock", function () {
+	return {
+		restrict: "E",
+		templateUrl: "templates/emails/emails-block.html",
+		scope: {},
+		controllerAs: "ctrl",
+		controller: function () {
+			this.activeFolder = "incoming";
+      this.activeEmail = undefined;
+		},
+	};
+});
+
+appModule.directive("folderList", function() {
   return {
     restrict: "E",
     templateUrl: "templates/emails/folder-list.html",
-    controllerAs: "folderListCtrl",
-    controller: function($http, emailStorage, globalState) {
+    scope: { activeFolder: "=" },
+		bindToController: true,
+    controllerAs: "ctrl",
+    controller: function ($http, emailStorage) {
       this.folders = [{ name: "fetching data...", count: 0 }];
 	    var self = this;
 
@@ -22,24 +37,21 @@ angular.module("email-client-app").directive("folderList", function() {
           console.log(error);
         }
       );
-
-      this.getActiveFolder = function() {
-        return globalState.activeFolder;
-      };
-
-      this.setActiveFolder = function(folderName) {
-        globalState.activeFolder = folderName;
-      };
     },
   };
 });
 
-angular.module("email-client-app").directive("emailList", function() {
+appModule.directive("emailList", function() {
   return {
     restrict: "E",
     templateUrl: "templates/emails/email-list.html",
-    controllerAs: "emailListCtrl",
-    controller: function(emailStorage, globalState) {
+    scope: {
+      activeFolder: "@",
+      activeEmail: "=",
+    },
+    bindToController: true,
+    controllerAs: "ctrl",
+    controller: function(emailStorage) {
       this.emailsByFolder = { "incoming": [{"subject": "fetching data..." }] };
       var self = this;
 
@@ -52,27 +64,21 @@ angular.module("email-client-app").directive("emailList", function() {
           console.log(error);
         }
       );
-      
-      this.getActiveFolder = function() {
-        return globalState.activeFolder;
-      };
-      
-      this.setActiveEmail = function(email) {
-        globalState.activeEmail = email;
-      };
     },
   };
 });
 
-angular.module("email-client-app").directive("emailDetails", function() {
+appModule.directive("emailDetails", function() {
   return {
     restrict: "E",
     templateUrl: "templates/emails/email-details.html",
-    controllerAs: "emailDetailsCtrl",
-    controller: function(globalState) {
-      this.getActiveEmail = function() {
-        return globalState.activeEmail;
-      };
+    scope: { activeEmail: "=" },
+    bindToController: true,
+    controllerAs: "ctrl",
+    controller: function() {
+      if (!this.activeEmail) {
+        this.activeEmail = { text: "Choose item in email list..." };
+      }
     },
   };
 });
@@ -81,7 +87,7 @@ angular.module("email-client-app").directive("emailDetails", function() {
 // services
 // -----------------------
 
-angular.module("email-client-app").factory("emailStorage", function($http) {
+appModule.factory("emailStorage", function($http) {
   var emailsByFolderPromise = $http.get("https://jsonblob.com/api/jsonBlob/56ad0df8e4b01190df4c3fb3");
 
   return {
@@ -108,13 +114,4 @@ angular.module("email-client-app").factory("emailStorage", function($http) {
       return foldersPromise;
     },
   };
-});
-
-angular.module("email-client-app").factory("globalState", function() {
-  var globalState = {
-    activeFolder: "incoming",
-    activeEmail: { text: "Choose item in email list..." },
-  };
-
-  return globalState;
 });

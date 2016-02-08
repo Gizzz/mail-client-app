@@ -8,7 +8,7 @@ appModule.config(function ($stateProvider, $urlRouterProvider) {
 	$stateProvider
 		.state("emails", {
 			url: "/emails",
-			templateUrl: "templates/emails/emails-block.html",
+			template: "<emails-block></emails-block>",
 		})
 		.state("contacts", {
 			url: "/contacts",

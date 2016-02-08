@@ -4,7 +4,7 @@
 // directives
 // -----------------------
 
-angular.module("email-client-app").directive("contactsBlock", function () {
+appModule.directive("contactsBlock", function () {
 	return {
 		restrict: "E",
 		templateUrl: "templates/contacts/contacts-block.html",
@@ -16,7 +16,7 @@ angular.module("email-client-app").directive("contactsBlock", function () {
 	};
 });
 
-angular.module("email-client-app").directive("userList", function () {
+appModule.directive("userList", function () {
 	return {
 		restrict: "E",
 		templateUrl: "templates/contacts/user-list.html",
@@ -29,7 +29,7 @@ angular.module("email-client-app").directive("userList", function () {
 	};
 });
 
-angular.module("email-client-app").directive("userDetails", function () {
+appModule.directive("userDetails", function () {
 	return {
 		restrict: "E",
 		templateUrl: "templates/contacts/user-details.html",
@@ -49,7 +49,7 @@ angular.module("email-client-app").directive("userDetails", function () {
 // services
 // -----------------------
 
-angular.module("email-client-app").factory("userStorage", function () {
+appModule.factory("userStorage", function () {
 	var users = [
 		{
 			id: 1,
@@ -76,7 +76,7 @@ angular.module("email-client-app").factory("userStorage", function () {
 	];
 
 	return {
-		users,
+		users: users,
 		getUserById: function (id) {
 			return users.filter( (item) => item.id === id )[0];
 		},

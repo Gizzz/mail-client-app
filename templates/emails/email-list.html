@@ -1,5 +1,5 @@
-<div ng-repeat="email in emailListCtrl.emailsByFolder[emailListCtrl.getActiveFolder()]">
-  <div class="row" ng-click="emailListCtrl.setActiveEmail(email);">
+<div ng-repeat="email in ctrl.emailsByFolder[ctrl.activeFolder]">
+  <div class="row" ng-click="ctrl.activeEmail = email">
     <div class="col-xs-4">{{email.from}}</div>
     <div class="col-xs-8">{{email.subject}}</div>
   </div>
