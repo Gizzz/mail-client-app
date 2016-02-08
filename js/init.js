@@ -9,6 +9,11 @@ appModule.config(function ($stateProvider, $urlRouterProvider) {
 		.state("emails", {
 			url: "/emails",
 			template: "<emails-block></emails-block>",
+			resolve: {
+				emailsByFolder: function (emailStorage) {
+					return emailStorage.getEmailsByFolderPromise();
+				},
+			},
 		})
 		.state("contacts", {
 			url: "/contacts",
