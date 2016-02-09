@@ -1,7 +1,7 @@
 ﻿<ul>
 	<li ng-repeat="user in userListCtrl.users">
 		<a 
-			href="javascript:void(0)"
+			href
 			ng-click="userListCtrl.selectedUserId = user.id"
 			ng-class="user.id === userListCtrl.selectedUserId ? 'active' : ''"
 		>
