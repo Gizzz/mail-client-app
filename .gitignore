@@ -1,5 +1,6 @@
 # My ignores
 .idea/
+Web.config
 
 # Windows image file caches
 Thumbs.db
