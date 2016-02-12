@@ -17,22 +17,24 @@ appModule.config(function ($stateProvider, $urlRouterProvider) {
 			templateUrl: "templates/login.html",
 			controllerAs: "ctrl",
 			controller: function($state, loginService) {
-				this.signIn = function (login, password) {
+				this.logIn = function (login, password) {
 					loginService.login = login;
 					loginService.password = password;
 					$state.go("user-page.emails");
 				};
 			},
 		})
+		.state("logout", {
+			url: "/logout",
+			controller: function($state, loginService) {
+				loginService.login = null;
+				loginService.password = null;
+				$state.go("login");
+			}
+		})
 		.state("user-page", {
 			url: "/user-page",
 			templateUrl: "templates/user-page.html",
-			resolve: {
-				// only needed to preload emailStorage service
-				preloadEmailStorage: function (emailStorage) {
-					return emailStorage.getEmailsByFolderPromise();
-				},
-			},
 		})
 		.state("user-page.emails", {
 			url: "/emails",
@@ -47,11 +49,15 @@ appModule.config(function ($stateProvider, $urlRouterProvider) {
 });
 
 appModule.run(function ($rootScope, $state, loginService) {
+
 	$rootScope.$on("$stateChangeStart", function(event, toState) {
 		if (toState.name !== "login" && !loginService.isUserLoggedIn()) {
 			event.preventDefault();
 			alert("User not logged in");
 			$state.go("login");
+		} else if ((toState.name === "login" && loginService.isUserLoggedIn())) {
+			event.preventDefault();
+			$state.go("user-page.emails");
 		}
 	});
 
@@ -82,8 +88,8 @@ appModule.run(function ($rootScope, $state, loginService) {
 
 appModule.factory("loginService", function() {
 	return {
-		login: undefined,
-		password: undefined,
+		login: null,
+		password: null,
 		isUserLoggedIn: function() {
 			return this.login === "user" && this.password === "123";
 		},
