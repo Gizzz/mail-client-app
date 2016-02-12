@@ -16,10 +16,10 @@ appModule.config(function ($stateProvider, $urlRouterProvider) {
 			url: "/login",
 			templateUrl: "templates/login.html",
 			controllerAs: "ctrl",
-			controller: function($state, loginSvc) {
+			controller: function($state, loginService) {
 				this.signIn = function (login, password) {
-					loginSvc.login = login;
-					loginSvc.password = password;
+					loginService.login = login;
+					loginService.password = password;
 					$state.go("user-page.emails");
 				};
 			},
@@ -46,9 +46,9 @@ appModule.config(function ($stateProvider, $urlRouterProvider) {
 
 });
 
-appModule.run(function ($rootScope, $state, loginSvc) {
+appModule.run(function ($rootScope, $state, loginService) {
 	$rootScope.$on("$stateChangeStart", function(event, toState) {
-		if (toState.name !== "login" && !loginSvc.isUserLoggedIn()) {
+		if (toState.name !== "login" && !loginService.isUserLoggedIn()) {
 			event.preventDefault();
 			alert("User not logged in");
 			$state.go("login");
@@ -80,7 +80,7 @@ appModule.run(function ($rootScope, $state, loginSvc) {
 	//});
 });
 
-appModule.factory("loginSvc", function() {
+appModule.factory("loginService", function() {
 	return {
 		login: undefined,
 		password: undefined,
