@@ -1,0 +1,25 @@
+{
+  "name": "mail-client-app",
+  "version": "1.0.0",
+  "description": "simple gmail-like app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gizzz/mail-client-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gizzz/mail-client-app/issues"
+  },
+  "homepage": "https://github.com/Gizzz/mail-client-app#readme",
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7"
+  }
+}

@@ -1,4 +1,6 @@
 # My ignores
+bower_components/
+node_modules/
 .idea/
 Web.config
 
