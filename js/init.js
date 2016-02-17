@@ -70,6 +70,8 @@ appModule.run(function ($rootScope, $state, loginService) {
 			event.preventDefault();
 			alert("You already logged in.")
 		}
+
+		//if (toState.name.includes("emails"))
 	});
 
 	// ui-router debug snippet

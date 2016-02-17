@@ -5,7 +5,7 @@
 			Full Name
 		</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="ctrl.user.fullName">
+			<input type="text" class="form-control" ng-model="ctrl.userToEdit.fullName">
 		</div>
 	</div>
 	<div class="form-group">
@@ -13,7 +13,7 @@
 			Birth Date
 		</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="ctrl.user.birthDate">
+			<input type="text" class="form-control" ng-model="ctrl.userToEdit.birthDate">
 		</div>
 	</div>
 	<div class="form-group">
@@ -21,7 +21,7 @@
 			Gender
 		</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="ctrl.user.gender">
+			<input type="text" class="form-control" ng-model="ctrl.userToEdit.gender">
 		</div>
 	</div>
 	<div class="form-group">
@@ -29,7 +29,7 @@
 			Address
 		</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="ctrl.user.address">
+			<input type="text" class="form-control" ng-model="ctrl.userToEdit.address">
 		</div>
 	</div>
 	<div class="form-group">
@@ -37,14 +37,14 @@
 			Email
 		</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="ctrl.user.email">
+			<input type="text" class="form-control" ng-model="ctrl.userToEdit.email">
 		</div>
 	</div>
 
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<button type="button" class="btn btn-success" ng-click="ctrl.saveUser()">Save</button>
-			<button type="button" class="btn btn-danger" ng-click="">Cancel</button>
+			<button type="button" class="btn btn-danger" ng-click="ctrl.cancelUpdate()">Cancel</button>
 		</div>
 	</div>
 </form>

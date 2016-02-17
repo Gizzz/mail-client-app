@@ -39,11 +39,9 @@ appModule.directive("userDetails", function () {
 		scope: { },
 		bindToController: true,
 		controllerAs: "ctrl",
-		controller: function ($scope, $stateParams, userStorage) {
-			this.getCurrentUser = function () {
-				var userId = Number($stateParams.userId);
-				return userStorage.getUserById(userId);
-			};
+		controller: function ($stateParams, userStorage) {
+			var userId = Number($stateParams.userId);
+			this.user = userStorage.getUserById(userId);
 		},
 	};
 });
@@ -55,12 +53,17 @@ appModule.directive("userEdit", function () {
 		scope: { },
 		bindToController: true,
 		controllerAs: "ctrl",
-		controller: function ($scope, $stateParams, userStorage) {
+		controller: function ($state, $stateParams, userStorage) {
 			var userId = Number($stateParams.userId);
-			this.user = userStorage.getUserById(userId);
+			this.userToEdit = angular.copy( userStorage.getUserById(userId) );
 
 			this.saveUser = function() {
-				userStorage.updateUserData(this.user);
+				userStorage.updateUserData(this.userToEdit);
+				$state.go("user-page.contacts.details", { userId: userId });
+			};
+
+			this.cancelUpdate = function() {
+				$state.go("user-page.contacts.details", { userId: userId });
 			};
 		},
 	};
@@ -114,6 +117,7 @@ appModule.factory("userStorage", function () {
 			return user;
 		},
 		updateUserData: function(user) {
+			// same object as in 'users' array; when updated - 'users' array is updated too
 			var userToUpdate = this.getUserById(user.id);
 
 			userToUpdate.fullName = user.fullName;
@@ -121,6 +125,8 @@ appModule.factory("userStorage", function () {
 			userToUpdate.gender = user.gender;
 			userToUpdate.address = user.address;
 			userToUpdate.email = user.email;
+
+			localStorage.users = JSON.stringify(users);
 		},
 	};
 });
