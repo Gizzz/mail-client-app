@@ -18,17 +18,20 @@ appModule.config(function ($stateProvider, $urlRouterProvider) {
 			controllerAs: "ctrl",
 			controller: function($state, loginService) {
 				this.logIn = function (login, password) {
-					loginService.login = login;
-					loginService.password = password;
-					$state.go("user-page.emails");
+					var result = loginService.tryLoginUser(login, password);
+
+					if (result) {
+						$state.go("user-page.emails");
+					} else {
+						alert("Incorrect login/password.");
+					}
 				};
 			},
 		})
 		.state("logout", {
 			url: "/logout",
 			controller: function($state, loginService) {
-				loginService.login = null;
-				loginService.password = null;
+				loginService.logoutUser();
 				$state.go("login");
 			}
 		})
@@ -58,18 +61,16 @@ appModule.run(function ($rootScope, $state, loginService) {
 
 	// login check code
 
-	//$rootScope.$on("$stateChangeStart", function(event, toState) {
-	//	if (toState.name !== "login" && !loginService.isUserLoggedIn()) {
-	//		event.preventDefault();
-	//		alert("User not logged in");
-	//		$state.go("login");
-	//	} else if ((toState.name === "login" && loginService.isUserLoggedIn())) {
-	//		event.preventDefault();
-	//		$state.go("user-page.emails");
-	//	}
-	//});
-
-
+	$rootScope.$on("$stateChangeStart", function(event, toState) {
+		if (toState.name !== "login" && !loginService.isUserLoggedIn()) {
+			event.preventDefault();
+			alert("User not logged in.");
+			$state.go("login");
+		} else if ((toState.name === "login" && loginService.isUserLoggedIn())) {
+			event.preventDefault();
+			alert("You already logged in.")
+		}
+	});
 
 	// ui-router debug snippet
 
@@ -99,11 +100,19 @@ appModule.run(function ($rootScope, $state, loginService) {
 
 appModule.factory("loginService", function() {
 	return {
-		login: null,
-		password: null,
 		isUserLoggedIn: function() {
-			return this.login === "user" && this.password === "123";
+			return sessionStorage.isUserLoggedIn === "true";
 		},
+		tryLoginUser: function(login, password) {
+			var isCredentialsCorrect = login === "user" && password === "123";
+			if (!isCredentialsCorrect) return false;
+
+			sessionStorage.isUserLoggedIn = "true";
+			return true;
+		},
+		logoutUser: function() {
+			sessionStorage.isUserLoggedIn = "false";
+		}
 	};
 });
 
