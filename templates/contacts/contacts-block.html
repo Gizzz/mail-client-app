@@ -1,9 +1,8 @@
 ﻿<div class="row">
 	<div class="col-xs-4 folders">
-		<user-list selected-user-id="contactsBlockCtrl.selectedUserId"></user-list>
+		<user-list selected-user-id="ctrl.selectedUserId"></user-list>
 	</div>
-	<div class="col-xs-8 email-previews">
-		<user-details selected-user-id="{{contactsBlockCtrl.selectedUserId}}"></user-details>
+	<div ui-view class="col-xs-8 email-previews" >
 	</div>
 </div>
 <hr />

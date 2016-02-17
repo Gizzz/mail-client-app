@@ -1,0 +1,50 @@
+<form class="form-horizontal">
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">
+			Full Name
+		</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="ctrl.user.fullName">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">
+			Birth Date
+		</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="ctrl.user.birthDate">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">
+			Gender
+		</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="ctrl.user.gender">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">
+			Address
+		</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="ctrl.user.address">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">
+			Email
+		</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="ctrl.user.email">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="button" class="btn btn-success" ng-click="ctrl.saveUser()">Save</button>
+			<button type="button" class="btn btn-danger" ng-click="">Cancel</button>
+		</div>
+	</div>
+</form>

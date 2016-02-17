@@ -1,9 +1,8 @@
 ﻿<ul>
-	<li ng-repeat="user in userListCtrl.users">
+	<li ng-repeat="user in ctrl.users">
 		<a 
-			href
-			ng-click="userListCtrl.selectedUserId = user.id"
-			ng-class="user.id === userListCtrl.selectedUserId ? 'active' : ''"
+			ui-sref="user-page.contacts.details({userId: user.id})"
+			ng-class="user.id === ctrl.getSelectedUserId() ? 'active' : ''"
 		>
 			{{user.fullName}}
 		</a>
