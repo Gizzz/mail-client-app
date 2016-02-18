@@ -2,11 +2,16 @@
 	<div class="col-xs-6">
 		<a
 			ng-class="ctrl.isEmailsPage() ? 'active' : ''"
-			ui-sref="user-page.emails"
-	>
+			ui-sref="user-page.emails.folder({folderName: 'incoming'})"
+		>
 			emails
 		</a> |
-		<a ng-class="ctrl.isContactsPage() ? 'active' : ''" ui-sref="user-page.contacts.details({userId: 1})">contacts</a>
+		<a
+			ng-class="ctrl.isContactsPage() ? 'active' : ''"
+			ui-sref="user-page.contacts.details({userId: 1})"
+		>
+			contacts
+		</a>
 	</div>
 	<div class="col-xs-6 text-right">
 		<a ui-sref="logout">logout</a>

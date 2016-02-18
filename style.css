@@ -28,6 +28,10 @@ a.active {
   cursor: pointer;
 }
 
+.email-previews .row.active {
+  background: #ccc !important;
+}
+
 .email-previews .row:hover {
-  background: #ccc;
+  background: #eee;
 }

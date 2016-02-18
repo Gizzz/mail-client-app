@@ -1,14 +1,14 @@
 <div class="row">
 	<div class="col-xs-4 folders">
-		<folder-list active-folder="ctrl.activeFolder"></folder-list>
+		<folder-list></folder-list>
 	</div>
 	<div class="col-xs-8 email-previews">
-		<email-list active-folder="{{ctrl.activeFolder}}" active-email="ctrl.activeEmail"></email-list>
+		<div ui-view></div>
 	</div>
 </div>
 <hr>
 <div class="row">
 	<div class="col-xs-12">
-		<email-details active-email="ctrl.activeEmail"></email-details>
+		<email-details></email-details>
 	</div>
 </div>

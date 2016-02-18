@@ -21,7 +21,7 @@ appModule.config(function ($stateProvider, $urlRouterProvider) {
 					var result = loginService.tryLoginUser(login, password);
 
 					if (result) {
-						$state.go("user-page.emails");
+						$state.go("user-page.emails.folder", { folderName: "incoming" });
 					} else {
 						alert("Incorrect login/password.");
 					}
@@ -53,6 +53,13 @@ appModule.config(function ($stateProvider, $urlRouterProvider) {
 				url: "/emails",
 				template: "<emails-block></emails-block>",
 			})
+				.state("user-page.emails.folder", {
+					url: "/folder/:folderName",
+					template: "<email-list></email-list>",
+				})
+					.state("user-page.emails.folder.email", {
+						url: "/email/:emailId",
+					})
 			.state("user-page.contacts", {
 				url: "/contacts",
 				template: "<contacts-block></contacts-block>",
@@ -78,10 +85,8 @@ appModule.run(function ($rootScope, $state, loginService) {
 			$state.go("login");
 		} else if ((toState.name === "login" && loginService.isUserLoggedIn())) {
 			event.preventDefault();
-			alert("You already logged in.")
+			alert("You already logged in.");
 		}
-
-		//if (toState.name.includes("emails"))
 	});
 
 	// ui-router debug snippet

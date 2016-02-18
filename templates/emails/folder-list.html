@@ -1,9 +1,9 @@
 <ul>
   <li ng-repeat="folder in ctrl.folders">
     <a 
-      href
+      ui-sref="user-page.emails.folder({folderName: folder.name})"
       ng-click="ctrl.activeFolder = folder.name"
-      ng-class="folder.name === ctrl.activeFolder ? 'active' : ''"
+      ng-class="folder.name === ctrl.getActiveFolderName() ? 'active' : ''"
     >
       {{folder.name}} ({{folder.count}})
     </a> 
