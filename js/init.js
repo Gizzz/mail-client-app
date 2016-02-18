@@ -38,6 +38,16 @@ appModule.config(function ($stateProvider, $urlRouterProvider) {
 		.state("user-page", {
 			url: "/user-page",
 			templateUrl: "templates/user-page.html",
+			controllerAs: "ctrl",
+			controller: function ($state) {
+				this.isContactsPage = function() {
+					return $state.current.name.includes("contacts");
+				};
+
+				this.isEmailsPage = function() {
+					return $state.current.name.includes("emails");
+				};
+			}
 		})
 			.state("user-page.emails", {
 				url: "/emails",
