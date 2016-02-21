@@ -1,0 +1,20 @@
+{
+  "name": "mail-client-app",
+  "description": "simple gmail-like app",
+  "main": "index.js",
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-mocks": "^1.5.0",
+    "angular-ui-router": "angular-ui/ui-router#^0.2.18"
+  }
+}
