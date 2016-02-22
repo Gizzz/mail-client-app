@@ -7,7 +7,7 @@ working demo: http://gizzz.github.io/mail-client-app/
 
 installing dependencies:
 
-$ npm install
+$ npm install  
 $ bower install
 
 ## run tests
