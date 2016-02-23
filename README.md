@@ -1,6 +1,6 @@
 # mail-client-app
 
-This project is simple mail client app.
+This project is simple mail client app.  
 Working demo: http://gizzz.github.io/mail-client-app/
 
 ## project commands
