@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "simple gmail-like app",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Gizzz/mail-client-app.git"
@@ -17,9 +14,17 @@
   },
   "homepage": "https://github.com/Gizzz/mail-client-app#readme",
   "devDependencies": {
+    "http-server": "^0.6.1",
+
     "jasmine-core": "^2.4.1",
+
     "karma": "^0.13.21",
-    "karma-chrome-launcher": "^0.2.2",
-    "karma-jasmine": "^0.3.7"
+    "karma-jasmine": "^0.3.7",
+    "karma-chrome-launcher": "^0.2.2"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "http-server -a localhost -p 8000 -c-1 -o",
+    "test": "karma start karma.conf.js"
   }
 }
