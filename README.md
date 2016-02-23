@@ -7,12 +7,12 @@ Working demo: http://gizzz.github.io/mail-client-app/
 
 First you need to install dependencies:
 
-$ npm install  
+- npm install  
 
 To start project on local server:
 
-$ npm start
+- npm start
 
 To run tests:
 
-$ npm test
+- npm test
