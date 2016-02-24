@@ -9,9 +9,6 @@ appModule.directive("contactsBlock", function () {
 		restrict: "E",
 		templateUrl: "templates/contacts/contacts-block.html",
 		scope: {},
-		controllerAs: "ctrl",
-		controller: function () {
-		}
 	};
 });
 

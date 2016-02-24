@@ -4,11 +4,10 @@ describe("userStorage service", function() {
 	var userStorage;
 
 	beforeEach(module("email-client-app"));
-	beforeEach(function() {
-		inject(function($injector) {
-			userStorage = $injector.get("userStorage");
-		})
-	});
+	beforeEach(inject(function($injector) {
+		userStorage = $injector.get("userStorage");
+	}));
+
 
 	describe("getUsers function", function() {
 		it("should return 3 users", function () {
@@ -65,4 +64,23 @@ describe("userStorage service", function() {
 		expect(updatedUser.address).toBe(userToUpdate.address);
 		expect(updatedUser.email).toBe(userToUpdate.email);
 	})
+});
+
+describe("userList directive controller", function() {
+	var el, scope, controller;
+
+	beforeEach(inject(function($compile, $rootScope) {
+		el = angular.element("<user-list></user-list>");
+		$compile(el)($rootScope.$new());
+		$rootScope.$digest();
+
+		controller = el.controller("userList");
+		scope = el.isolateScope();
+	}));
+
+	it(" should do something to the scope", function() {
+		//expect(el.scope().$id).toBeDefined();
+
+		console.dir(el.scope().controller());
+	});
 });
