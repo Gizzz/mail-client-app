@@ -65,22 +65,3 @@ describe("userStorage service", function() {
 		expect(updatedUser.email).toBe(userToUpdate.email);
 	})
 });
-
-describe("userList directive controller", function() {
-	var el, scope, controller;
-
-	beforeEach(inject(function($compile, $rootScope) {
-		el = angular.element("<user-list></user-list>");
-		$compile(el)($rootScope.$new());
-		$rootScope.$digest();
-
-		controller = el.controller("userList");
-		scope = el.isolateScope();
-	}));
-
-	it(" should do something to the scope", function() {
-		//expect(el.scope().$id).toBeDefined();
-
-		console.dir(el.scope().controller());
-	});
-});

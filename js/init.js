@@ -6,12 +6,6 @@ appModule.config(function ($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise("/login");
 
 	$stateProvider
-		// for debug only
-
-		//.state("root", {
-		//	url: "/",
-		//})
-
 		.state("login", {
 			url: "/login",
 			templateUrl: "templates/login.html",
